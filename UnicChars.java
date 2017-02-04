@@ -1,3 +1,11 @@
+/**
+ * Write a console application that takes a string and returns the number of unique characters in the string.
+ * It is expected that a string with the same character sequence may be passed several times to the method.
+ * Since the counting operation can be time consuming, the method should cache the results,
+ * so that when the method is given a string previously encountered, it will simply retrieve the stored result.
+ * Use collections and maps where appropriate.
+ */
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.*;
@@ -14,15 +22,16 @@ public class UnicChars {
             System.out.println(charsNum(str));
         }
     }
+    static HashMap<String, Long> catcher = new HashMap<>();
+
     public static long charsNum(String str) {
-        HashMap<String, Long> result = new HashMap<>();
         long count = 0;
-        if(!result.containsKey(str)) {
+        if(!catcher.containsKey(str)) {
             count = str.chars().distinct().count();
-            result.put(str, count);
+            catcher.put(str, count);
         }
-        else if(result.containsKey(str)){
-            Set<Map.Entry<String, Long>> set = result.entrySet();
+        else if(catcher.containsKey(str)){
+            Set<Map.Entry<String, Long>> set = catcher.entrySet();
             for (Map.Entry<String, Long> me : set){
                 count = me.getValue();
             }
