@@ -15,14 +15,15 @@ public class UnicChars {
         }
     }
     public static long charsNum(String str) {
-        HashMap<String, Integer> result = new HashMap<>();
+        HashMap<String, Long> result = new HashMap<>();
         long count = 0;
         if(!result.containsKey(str)) {
             count = str.chars().distinct().count();
+            result.put(str, count);
         }
         else if(result.containsKey(str)){
-            Set<Map.Entry<String, Integer>> set = result.entrySet();
-            for (Map.Entry<String, Integer> me : set){
+            Set<Map.Entry<String, Long>> set = result.entrySet();
+            for (Map.Entry<String, Long> me : set){
                 count = me.getValue();
             }
         }
