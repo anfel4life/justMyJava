@@ -14,6 +14,8 @@ import java.util.*;
  * Created by misha on 29.01.17.
  */
 public class UnicChars {
+    private static HashMap<String, Long> cache = new HashMap<>();
+    
     public static void main(String[] args) throws Exception {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         while (true) {
@@ -21,16 +23,15 @@ public class UnicChars {
             String str = reader.readLine();
             System.out.println(charsNum(str));
         }
-    }
-    static HashMap<String, Long> catcher = new HashMap<>();
+    }    
 
-    public static long charsNum(String str) {
+    private static long charsNum(String str) {
         long count = 0;
-        if(!catcher.containsKey(str)) {
+        if(!cache.containsKey(str)) {
             count = str.chars().distinct().count();
-            catcher.put(str, count);
+            cache.put(str, count);
         }
-        else if(catcher.containsKey(str)){
+        else if(cache.containsKey(str)){
             Set<Map.Entry<String, Long>> set = catcher.entrySet();
             for (Map.Entry<String, Long> me : set){
                 count = me.getValue();
